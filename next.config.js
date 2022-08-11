@@ -1,7 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
+  reactStrictMode: false,
   swcMinify: true,
+  images: {
+    domains: ["api.react-finland.fi", "www.reason-conf.com", "typeofconf.com"],
+  }
 }
-
-module.exports = nextConfig
