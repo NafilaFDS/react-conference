@@ -4,16 +4,17 @@ import { useQuery } from "@apollo/client";
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import Head from 'next/head'
 
 //API
 import { SINGLE_CONFERENCE } from "../../libs/graphql/query";
 
 const ConferenceID = () => {
     const router = useRouter();
+    const { conferenceID } = router.query
     const [conferenceInfo, setConferenceInfo] = useState({});
     const [tabInfo, setTabInfo] = useState([]);
     const [tabStatus, setTabStatus] = useState("");
-    const { conferenceID } = router.query
     const { data, loading, error } = useQuery(SINGLE_CONFERENCE, {
         variables: {
             id: conferenceID
@@ -85,6 +86,10 @@ const ConferenceID = () => {
     }, [data, error])
     return (
         <>
+            <Head>
+                <title>{conferenceID}</title>
+                <meta name="description" content={conferenceID} />
+            </Head>
             {
                 !error ? (
                     loading ?
